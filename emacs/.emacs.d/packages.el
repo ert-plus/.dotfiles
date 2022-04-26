@@ -17,8 +17,16 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; get tab functionally for org mode
+;; https://stackoverflow.com/questions/22878668/emacs-org-mode-evil-mode-tab-key-not-working
+;; (setq evil-want-C-i-jump nil)
+
 (use-package evil
   :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
   :config
   (evil-mode 1)
 
@@ -28,6 +36,11 @@
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 (use-package undo-tree
   :ensure t
@@ -81,13 +94,6 @@
   :init
   (ivy-rich-mode 1))
 
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("C-x b" . counsel-ibuffer)
-         ("C-x C-f" . counsel-find-file)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
-
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -98,7 +104,9 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-; TODO set this up properly
-(use-package multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; TODO set this up properly
+;; (use-package multiple-cursors)
+;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+(use-package go-mode)
 

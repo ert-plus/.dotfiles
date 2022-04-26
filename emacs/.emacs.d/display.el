@@ -9,7 +9,7 @@
 (setq visible-bell t)       ; Visible bell
 
 
-(set-face-attribute 'default nil :font "Fira Code Retina" :height 80)
+(set-face-attribute 'default nil :font "Fira Code Retina" :height 120)
 
 (column-number-mode)
 (global-display-line-numbers-mode t)
